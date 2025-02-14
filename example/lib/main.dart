@@ -89,7 +89,7 @@ class _MyAppState extends State<MyApp> {
                   Expanded(
                     child: GestureDetector(
                       onTap: () {
-                        _yyevaController.play("https://media.seeronnet.com/video/gift/liwuzhonggao.mp4");
+                        _yyevaController.play("https://raw.githubusercontent.com/SeerOnnetMobile/flutter_yyeva_plugin/refs/heads/main/liwuzhonggao.mp4");
                       },
                       child: const Text(
                         'start',
