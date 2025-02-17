@@ -95,7 +95,7 @@ class FlutterYyevaController {
           }
           Future.delayed(const Duration(milliseconds: 200), () {
             if (disposed) {return;}
-            _queue.add(VideoModel(path, VideoSource.asset));
+            _queue.add(VideoModel(filePath, VideoSource.asset));
             playNext();
           });
         }
