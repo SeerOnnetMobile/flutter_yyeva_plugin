@@ -25,7 +25,7 @@ class _YyEvaPlayerWidgetState extends State<YyEvaPlayerWidget> {
     } else if (Platform.isAndroid) {
       return AndroidView(viewType: _viewType, onPlatformViewCreated: _onPlatformViewCreated);
     } else {
-      return SizedBox();
+      return const SizedBox();
     }
   }
 

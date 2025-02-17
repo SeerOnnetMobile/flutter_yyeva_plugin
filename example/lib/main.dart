@@ -23,6 +23,9 @@ class _MyAppState extends State<MyApp> {
 
   bool _isQueue = true;
 
+  final TextEditingController _controller =
+      TextEditingController(text: "https://raw.githubusercontent.com/SeerOnnetMobile/flutter_yyeva_plugin/refs/heads/main/liwuzhonggao.mp4");
+
   @override
   void initState() {
     super.initState();
@@ -82,43 +85,116 @@ class _MyAppState extends State<MyApp> {
                 ],
               ),
             ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
+              child: Row(
+                children: [
+                  const Text("播放地址"),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Expanded(
+                    child: TextField(
+                      keyboardType: TextInputType.number,
+                      decoration: const InputDecoration(
+                        labelText: '請輸入远端视频地址',
+                      ),
+                      controller: _controller,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 10),
+                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(22), border: Border.all(color: Colors.black, width: 1)),
+                    child: GestureDetector(
+                      onTap: () {
+                        _yyevaController.playAssetFile('asset/mp4/liwuzhonggao.mp4');
+                      },
+                      child: const Text(
+                        '播放Assets文件',
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 10),
+                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(22), border: Border.all(color: Colors.black, width: 1)),
+                    child: GestureDetector(
+                      onTap: () {
+                        _yyevaController.play(_controller.text);
+                      },
+                      child: const Text(
+                        '播放远端视频',
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: GestureDetector(
+                    onTap: () {
+                      VideoDownloadManager.getInstance().preDownloadVideos([
+                        "https://raw.githubusercontent.com/SeerOnnetMobile/flutter_yyeva_plugin/refs/heads/main/liwuzhonggao.mp4",
+                        "https://lxcode.bs2cdn.yy.com/92d5a19f-4288-41e6-835a-e092880c4af7.mp4"
+                      ]);
+                    },
+                    child: Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 10),
+                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(22), border: Border.all(color: Colors.black, width: 1)),
+                      child: const Text(
+                        '预加载',
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            ),
             SizedBox(
               height: 44,
               child: Row(
                 children: [
                   Expanded(
-                    child: GestureDetector(
-                      onTap: () {
-                        _yyevaController.play("https://raw.githubusercontent.com/SeerOnnetMobile/flutter_yyeva_plugin/refs/heads/main/liwuzhonggao.mp4");
-                      },
-                      child: const Text(
-                        'start',
-                        textAlign: TextAlign.center,
+                    child: Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 10),
+                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(22), border: Border.all(color: Colors.black, width: 1)),
+                      child: GestureDetector(
+                        onTap: () {
+                          _yyevaController.pause();
+                        },
+                        child: const Text('pause', textAlign: TextAlign.center),
                       ),
                     ),
                   ),
                   Expanded(
-                    child: GestureDetector(
-                      onTap: () {
-                        _yyevaController.pause();
-                      },
-                      child: const Text('pause', textAlign: TextAlign.center),
+                    child: Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 10),
+                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(22), border: Border.all(color: Colors.black, width: 1)),
+                      child: GestureDetector(
+                        onTap: () {
+                          _yyevaController.resume();
+                        },
+                        child: const Text('resume', textAlign: TextAlign.center),
+                      ),
                     ),
                   ),
                   Expanded(
-                    child: GestureDetector(
-                      onTap: () {
-                        _yyevaController.resume();
-                      },
-                      child: const Text('resume', textAlign: TextAlign.center),
-                    ),
-                  ),
-                  Expanded(
-                    child: GestureDetector(
-                      onTap: () {
-                        _yyevaController.stop();
-                      },
-                      child: const Text('stop', textAlign: TextAlign.center),
+                    child: Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 10),
+                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(22), border: Border.all(color: Colors.black, width: 1)),
+                      child: GestureDetector(
+                        onTap: () {
+                          _yyevaController.stop();
+                        },
+                        child: const Text('stop', textAlign: TextAlign.center),
+                      ),
                     ),
                   ),
                 ],
