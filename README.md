@@ -10,7 +10,7 @@
 视频播放有两个模式：1、队列播放（VideoPlayMode.onQueue）2、覆盖播放（VideoPlayMode.onCover）
 
 1、需要先声明一个变量 `late FlutterYyevaController _yyevaController;`
-并在`LiveGiftWidget`的`onViewCreated`回调中对_liveGiftController进行赋值。
+并在`YyEvaPlayerWidget`的`onViewCreated`回调中对_liveGiftController进行赋值。
 
 ```
 YyEvaPlayerWidget(
