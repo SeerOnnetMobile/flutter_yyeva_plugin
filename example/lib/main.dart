@@ -1,8 +1,7 @@
-import 'package:flutter/material.dart';
 import 'dart:async';
-import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 
-import 'package:flutter/services.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:flutter_yyeva_plugin/eva_player_widget.dart';
 import 'package:flutter_yyeva_plugin/flutter_yyeva_controller.dart';
 import 'package:flutter_yyeva_plugin/utils/video_download_manager.dart';
@@ -102,6 +101,20 @@ class _MyAppState extends State<MyApp> {
                         });
                       }),
                   const Expanded(child: SizedBox()),
+                  GestureDetector(
+                    onTap: () async {
+                      _yyevaController.dispose();
+                      SmartDialog.showToast("销毁播放器", alignment: Alignment.center);
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: Colors.blue),
+                      child: const Text(
+                        '销毁播放器',
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),

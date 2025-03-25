@@ -86,7 +86,7 @@ class FlutterYyevaView(
                 val isLoop: Boolean? = call.argument("isLoop")
                 url?.apply {
                     currentUrl = url
-                    animView.setLoop(if (isLoop == true) 99999 else 1);
+                    animView.setLoop(isLoop ?:false);
                     animView.startPlay(File(url))
                 }
                 result.success(true)

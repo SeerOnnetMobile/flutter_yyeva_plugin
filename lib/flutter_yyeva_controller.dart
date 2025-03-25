@@ -33,12 +33,8 @@ class FlutterYyevaController {
   bool disposed = false;
 
   dispose() {
-    _queue = [];
-    if (isPlaying) {
-      stop();
-    }
-    destroyPlayer();
     disposed = true;
+    _queue = [];
   }
 
   /// 绑定channel
@@ -86,6 +82,7 @@ class FlutterYyevaController {
     try {
       final filePath = await VideoDownloadManager.getInstance().getAssetsPathAfterData(path);
       if (filePath != null) {
+
         if (mode == VideoPlayMode.onQueue) {
           _queue.add(VideoModel(filePath, VideoSource.asset));
           if (isPlaying == false) {
@@ -157,7 +154,7 @@ class FlutterYyevaController {
 
   /// 播放下一个
   playNext() async {
-    if (_queue.isNotEmpty) {
+    if (_queue.isNotEmpty && !disposed) {
       final fileModel = _queue.first;
       _queue.removeAt(0);
       return await _channel.invokeMethod<bool>('play', {'url': fileModel.path,'isLoop': isLoop});

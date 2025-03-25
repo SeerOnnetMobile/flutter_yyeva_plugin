@@ -95,7 +95,13 @@ class VideoDownloadManager {
   // 获取缓存文件夹路径
   Future<String> getCacheDirPath() async {
     final tempDir = await getTemporaryDirectory();
-    final cacheDirPath = tempDir.path;
+    String cacheDirPath = tempDir.path;
+    // return cacheDirPath;
+    if (Platform.isAndroid) {
+      cacheDirPath = (await getExternalStorageDirectory())?.path ?? "";
+    } else if (Platform.isIOS) {
+      cacheDirPath = (await getApplicationDocumentsDirectory())?.path ?? "";
+    }
     return cacheDirPath;
   }
 
