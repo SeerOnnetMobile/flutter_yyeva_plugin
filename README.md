@@ -15,6 +15,7 @@
 ```
 YyEvaPlayerWidget(
 	mode: VideoPlayMode.onCover,
+	isLoop: true,
 	onViewCreated: (controller) {
 		_yyevaController = controller;
 	},

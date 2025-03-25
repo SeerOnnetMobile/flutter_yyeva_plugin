@@ -23,6 +23,8 @@ class _MyAppState extends State<MyApp> {
 
   bool _isQueue = true;
 
+  bool _isLoop = true;
+
   final TextEditingController _controller =
       TextEditingController(text: "https://raw.githubusercontent.com/SeerOnnetMobile/flutter_yyeva_plugin/refs/heads/main/liwuzhonggao.mp4");
 
@@ -82,6 +84,24 @@ class _MyAppState extends State<MyApp> {
                       ),
                     ),
                   ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
+              child: Row(
+                children: [
+                  const Text("是否循环: "),
+                  Switch(
+                      value: _isLoop,
+                      onChanged: (isTrue) {
+                        setState(() {
+                          _isLoop = isTrue;
+                          _yyevaController.isLoop = _isLoop;
+                          _yyevaController.stop();
+                        });
+                      }),
+                  const Expanded(child: SizedBox()),
                 ],
               ),
             ),
@@ -206,6 +226,7 @@ class _MyAppState extends State<MyApp> {
                   SizedBox(
                       child: YyEvaPlayerWidget(
                     mode: _isQueue ? VideoPlayMode.onQueue : VideoPlayMode.onCover,
+                    isLoop: _isLoop,
                     onViewCreated: (controller) {
                       _yyevaController = controller;
 

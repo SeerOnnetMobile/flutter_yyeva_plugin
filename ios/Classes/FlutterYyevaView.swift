@@ -64,6 +64,9 @@ public class FlutterYyevaView:NSObject, FlutterPlatformView, IYYEVAPlayerDelegat
         switch call.method {
         case "play":
             let url = args["url"] as! String
+            let isLoop = args["isLoop"] as! Bool
+            
+            evaPlayer.loop = isLoop;
             evaPlayer.play(url)
             print("url播放了")
             result(true)

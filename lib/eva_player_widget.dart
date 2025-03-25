@@ -9,7 +9,9 @@ class YyEvaPlayerWidget extends StatefulWidget {
 
   final VideoPlayMode mode;
 
-  const YyEvaPlayerWidget({super.key, this.onViewCreated, this.mode = VideoPlayMode.onQueue});
+  final bool isLoop;
+
+  const YyEvaPlayerWidget({super.key, this.onViewCreated, this.mode = VideoPlayMode.onQueue, required this.isLoop});
 
   @override
   State<YyEvaPlayerWidget> createState() => _YyEvaPlayerWidgetState();
@@ -31,7 +33,7 @@ class _YyEvaPlayerWidgetState extends State<YyEvaPlayerWidget> {
 
   void _onPlatformViewCreated(int id) {
     final channel = MethodChannel('${_viewType}_$id');
-    FlutterYyevaController liveGiftController = FlutterYyevaController(mode: widget.mode);
+    FlutterYyevaController liveGiftController = FlutterYyevaController(mode: widget.mode,isLoop: widget.isLoop);
     liveGiftController.attachChannel(channel);
 
     if (widget.onViewCreated != null) {
