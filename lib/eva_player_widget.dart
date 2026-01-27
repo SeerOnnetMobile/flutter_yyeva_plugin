@@ -37,7 +37,7 @@ class _YyEvaPlayerWidgetState extends State<YyEvaPlayerWidget> {
     liveGiftController.attachChannel(channel);
 
     if (widget.onViewCreated != null) {
-      Future.delayed(const Duration(milliseconds: 200), () {
+      Future.delayed(const Duration(milliseconds: 50), () {
         if (mounted) {
           widget.onViewCreated!(liveGiftController);
         }

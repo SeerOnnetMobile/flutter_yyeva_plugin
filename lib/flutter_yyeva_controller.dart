@@ -60,14 +60,17 @@ class FlutterYyevaController {
             playNext();
           }
         } else {
+          Duration time = Duration.zero;
           if (isPlaying) {
             stop();
+            time = const Duration(milliseconds: 200);
           }
-          Future.delayed(const Duration(milliseconds: 200), () {
+          Future.delayed(time, () {
             if (disposed) {return;}
             _queue.add(VideoModel(filePath, VideoSource.remote));
             playNext();
           });
+
         }
       }
       return true;
@@ -89,10 +92,12 @@ class FlutterYyevaController {
             playNext();
           }
         } else {
+          Duration time = Duration.zero;
           if (isPlaying) {
             stop();
+            time = const Duration(milliseconds: 200);
           }
-          Future.delayed(const Duration(milliseconds: 200), () {
+          Future.delayed(time, () {
             if (disposed) {return;}
             _queue.add(VideoModel(filePath, VideoSource.asset));
             playNext();
