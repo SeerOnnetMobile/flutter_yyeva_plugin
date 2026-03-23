@@ -29,7 +29,7 @@ class FlutterYyevaView(
 
     init {
         methodChannel.setMethodCallHandler(this)
-        animView.setScaleType(ScaleType.CENTER_CROP)
+        animView.setScaleType(ScaleType.FIT_XY)
         animView.setAnimListener(object : IEvaAnimListener {
 
             override fun onVideoStart(isRestart: Boolean) {
@@ -84,9 +84,11 @@ class FlutterYyevaView(
             "play" -> {
                 val url: String? = call.argument("url")
                 val isLoop: Boolean? = call.argument("isLoop")
+                val isStayLastFrame: Boolean? = call.argument("isStayLastFrame")
                 url?.apply {
                     currentUrl = url
                     animView.setLoop(isLoop ?:false);
+                    animView.setStayLastFrame(isStayLastFrame ?:false);
                     animView.startPlay(File(url))
                 }
                 result.success(true)

@@ -65,8 +65,10 @@ public class FlutterYyevaView:NSObject, FlutterPlatformView, IYYEVAPlayerDelegat
         case "play":
             let url = args["url"] as! String
             let isLoop = args["isLoop"] as! Bool
+            let isStayLastFrame = args["isStayLastFrame"] as! Bool
             
             evaPlayer.loop = isLoop;
+            evaPlayer.setLastFrame = isStayLastFrame
             evaPlayer.play(url)
             print("url播放了")
             result(true)

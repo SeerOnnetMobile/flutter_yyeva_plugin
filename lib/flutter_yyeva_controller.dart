@@ -28,6 +28,8 @@ class FlutterYyevaController {
 
   bool isLoop = false;
 
+  bool isStayLastFrame = false;
+
   FlutterYyevaController({required this.mode, this.isLoop = false});
 
   bool disposed = false;
@@ -162,7 +164,7 @@ class FlutterYyevaController {
     if (_queue.isNotEmpty && !disposed) {
       final fileModel = _queue.first;
       _queue.removeAt(0);
-      return await _channel.invokeMethod<bool>('play', {'url': fileModel.path,'isLoop': isLoop});
+      return await _channel.invokeMethod<bool>('play', {'url': fileModel.path,'isLoop': isLoop,'isStayLastFrame': isStayLastFrame});
     }
   }
 }
