@@ -24,6 +24,8 @@ class _MyAppState extends State<MyApp> {
 
   bool _isLoop = true;
 
+  bool _isStayLastFrame = false;
+
   final TextEditingController _controller =
       TextEditingController(text: "https://raw.githubusercontent.com/SeerOnnetMobile/flutter_yyeva_plugin/refs/heads/main/liwuzhonggao.mp4");
 
@@ -97,6 +99,15 @@ class _MyAppState extends State<MyApp> {
                         setState(() {
                           _isLoop = isTrue;
                           _yyevaController.isLoop = _isLoop;
+                          _yyevaController.stop();
+                        });
+                      }), const Text("保持第一帧: "),
+                  Switch(
+                      value: _isStayLastFrame,
+                      onChanged: (isTrue) {
+                        setState(() {
+                          _isStayLastFrame = isTrue;
+                          _yyevaController.isStayLastFrame = _isStayLastFrame;
                           _yyevaController.stop();
                         });
                       }),

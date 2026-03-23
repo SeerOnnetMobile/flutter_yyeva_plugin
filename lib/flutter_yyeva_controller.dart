@@ -55,58 +55,53 @@ class FlutterYyevaController {
   Future<bool?> play(String url) async {
     try {
       final filePath = await VideoDownloadManager.getInstance().getFilePathAfterData(url);
-      if (filePath != null) {
-        if (mode == VideoPlayMode.onQueue) {
-          _queue.add(VideoModel(filePath, VideoSource.remote));
-          if (isPlaying == false) {
-            playNext();
-          }
-        } else {
-          Duration time = Duration.zero;
-          if (isPlaying) {
-            stop();
-            time = const Duration(milliseconds: 200);
-          }
-          Future.delayed(time, () {
-            if (disposed) {return;}
-            _queue.add(VideoModel(filePath, VideoSource.remote));
-            playNext();
-          });
-
+      if (mode == VideoPlayMode.onQueue) {
+        _queue.add(VideoModel(filePath, VideoSource.remote));
+        if (isPlaying == false) {
+          playNext();
         }
+      } else {
+        Duration time = Duration.zero;
+        if (isPlaying) {
+          stop();
+          time = const Duration(milliseconds: 200);
+        }
+        Future.delayed(time, () {
+          if (disposed) {return;}
+          _queue.add(VideoModel(filePath, VideoSource.remote));
+          playNext();
+        });
+
       }
-      return true;
+          return true;
     } on PlatformException catch (e) {
       debugPrint('Failed to play url: ${e.message}');
       return false;
     }
   }
 
-  /// 播放远端视频
+  /// 播放Assets里的视频
   Future<bool?> playAssetFile(String path) async {
     try {
       final filePath = await VideoDownloadManager.getInstance().getAssetsPathAfterData(path);
-      if (filePath != null) {
-
-        if (mode == VideoPlayMode.onQueue) {
-          _queue.add(VideoModel(filePath, VideoSource.asset));
-          if (isPlaying == false) {
-            playNext();
-          }
-        } else {
-          Duration time = Duration.zero;
-          if (isPlaying) {
-            stop();
-            time = const Duration(milliseconds: 200);
-          }
-          Future.delayed(time, () {
-            if (disposed) {return;}
-            _queue.add(VideoModel(filePath, VideoSource.asset));
-            playNext();
-          });
+      if (mode == VideoPlayMode.onQueue) {
+        _queue.add(VideoModel(filePath, VideoSource.asset));
+        if (isPlaying == false) {
+          playNext();
         }
+      } else {
+        Duration time = Duration.zero;
+        if (isPlaying) {
+          stop();
+          time = const Duration(milliseconds: 200);
+        }
+        Future.delayed(time, () {
+          if (disposed) {return;}
+          _queue.add(VideoModel(filePath, VideoSource.asset));
+          playNext();
+        });
       }
-      return true;
+          return true;
     } on PlatformException catch (e) {
       debugPrint('Failed to play url: ${e.message}');
       return false;
@@ -142,7 +137,7 @@ class FlutterYyevaController {
       }
       return result;
     } on PlatformException catch (e) {
-      print('Failed to stop');
+      debugPrint('Failed to stop');
       return false;
     }
   }
