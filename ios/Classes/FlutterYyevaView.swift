@@ -113,6 +113,13 @@ public class FlutterYyevaView:NSObject, FlutterPlatformView, IYYEVAPlayerDelegat
     public func evaPlayer(_ player: YYEVAPlayer, playFail error: any Error) {
         channel?.invokeMethod("onFailed", arguments: ["msg":error.localizedDescription])
     }
+    
+    public func evaPlayer(_ player: YYEVAPlayer, onPlayFrame frame: Int, frameCount: Int) {
+        if (evaPlayer.loop == false && evaPlayer.setLastFrame == true && frame == frameCount) {
+            // 不是循环、且打开了保持最后一帧且当前就是最后一帧，证明视频播放已经结束
+            channel?.invokeMethod("onVideoComplete", arguments: ["url":player.assets?.filePath ?? ""])
+        }
+    }
 }
 
 
