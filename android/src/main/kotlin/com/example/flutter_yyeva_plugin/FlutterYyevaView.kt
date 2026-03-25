@@ -87,8 +87,8 @@ class FlutterYyevaView(
                 val isStayLastFrame: Boolean? = call.argument("isStayLastFrame")
                 url?.apply {
                     currentUrl = url
-                    animView.setLoop(isLoop ?:false);
-                    animView.setStayLastFrame(isStayLastFrame ?:false);
+                    animView.setLoop(isLoop ?:false)
+                    animView.setLastFrame(isStayLastFrame ?:false)
                     animView.startPlay(File(url))
                 }
                 result.success(true)
