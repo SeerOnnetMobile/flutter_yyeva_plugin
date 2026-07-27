@@ -1,4 +1,4 @@
-enum VideoSource { remote, asset }
+enum VideoSource { remote, local, asset }
 
 class VideoModel {
   final String path;

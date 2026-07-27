@@ -100,7 +100,7 @@ class VideoDownloadManager {
     if (Platform.isAndroid) {
       cacheDirPath = (await getExternalStorageDirectory())?.path ?? "";
     } else if (Platform.isIOS) {
-      cacheDirPath = (await getApplicationDocumentsDirectory())?.path ?? "";
+      cacheDirPath = (await getApplicationDocumentsDirectory()).path;
     }
     return cacheDirPath;
   }

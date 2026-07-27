@@ -36,8 +36,11 @@ _yyevaController.addListener(onVideoCompleted: (url) {
 
 3、需要对视频进行操作时调用`play`、`pause`、`resume`、`stop`等方法控制视频播放。
 ```
-播放本地视频：
+播放本地Assets视频：
 _yyevaController.playAssetFile('asset/mp4/liwuzhonggao.mp4');
+
+播放本地视频文件（传入文件路径）：
+_yyevaController.playFile('/path/to/your/video.mp4');
 
 播放远端视频：
 _yyevaController.play("https://raw.githubusercontent.com/SeerOnnetMobile/flutter_yyeva_plugin/refs/heads/main/liwuzhonggao.mp4");
